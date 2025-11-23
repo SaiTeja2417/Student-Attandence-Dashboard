@@ -12,13 +12,9 @@ import { PieChart, Pie, Cell, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, 
 
 const Dashboard = () => {
     const [value, setValue] = useState('1');
-
-    // students fetched from backend (master list)
     const [students, setStudents] = useState([]);
     const [selectedDate, setSelectedDate] = useState(() => new Date().toISOString().slice(0, 10));
-
-    // report + totals from backend
-    const [reportData, setReportData] = useState([]); // per-student aggregated report
+    const [reportData, setReportData] = useState([]);
     const [totals, setTotals] = useState({ totalDaysRecorded: 0, totalStudents: 0, totalPresent: 0, totalAbsent: 0 });
 
 
@@ -43,7 +39,6 @@ const Dashboard = () => {
     };
 
     const saveAttendance = async () => {
-        // build payload with normalized statuses
         const payload = {
             date: selectedDate,
             students: students.map(s => ({ id: s.id, status: s.status }))
@@ -58,7 +53,7 @@ const Dashboard = () => {
             if (res.ok) {
                 await loadReport();
                 alert('Attendance saved');
-                setValue('2'); // switch to reports
+                setValue('2');
             } else {
                 const err = await res.json();
                 alert('Save failed: ' + (err.message || 'unknown'));
@@ -72,13 +67,10 @@ const Dashboard = () => {
 useEffect(() => {
     const initLoad = async () => {
         try {
-            // Load students
             const r = await fetch('http://localhost:5000/students');
             const data = await r.json();
             const init = data.map(s => ({ ...s, status: "Present" }));
             setStudents(init);
-
-            // Load report
             await loadReport(); 
         } catch (err) {
             console.error(err);
@@ -374,22 +366,8 @@ useEffect(() => {
                                                             backgroundColor: "#fafbff"
                                                         }}
                                                     >
-                                                        {/* LEFT */}
                                                         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                                                            <Box
-                                                                sx={{
-                                                                    width: 56,
-                                                                    height: 56,
-                                                                    borderRadius: "50%",
-                                                                    background:
-                                                                        "linear-gradient(135deg, #5b8cff, #7b5bff)",
-                                                                    color: "#fff",
-                                                                    display: "flex",
-                                                                    alignItems: "center",
-                                                                    justifyContent: "center",
-                                                                    fontWeight: 700
-                                                                }}
-                                                            >
+                                                            <Box sx={{ width: 56, height: 56, borderRadius: "50%", background:"linear-gradient(135deg, #5b8cff, #7b5bff)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 700}}>
                                                                 {r.roll}
                                                             </Box>
                                                             <Box>

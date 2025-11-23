@@ -10,7 +10,6 @@ app.use(express.json());
 
 const DATA_FILE = path.join(__dirname, 'attendanceRecords.json');
 
-// ------------------ DUMMY TEACHER LOGIN ------------------ //
 const TEACHER_EMAIL = "teacher@gmail.com";
 const TEACHER_PASSWORD = "teacher123";
 
@@ -28,10 +27,7 @@ app.post("/login", (req, res) => {
   return res.status(401).json({ success: false, message: "Invalid credentials" });
 });
 
-// ---------------------------------------------------------- //
 
-
-// master student list
 const students = [
   { id: 101, name: "Emma Watson", roll: 101 },
   { id: 102, name: "Liam Smith", roll: 102 },
@@ -45,7 +41,6 @@ const students = [
   { id: 110, name: "Isabella King", roll: 110 }
 ];
 
-// ensure file exists
 function loadRecords() {
   try {
     if (!fs.existsSync(DATA_FILE)) {
