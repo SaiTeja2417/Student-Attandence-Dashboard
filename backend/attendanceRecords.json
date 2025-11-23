@@ -1,0 +1,47 @@
+[
+  {
+    "date": "2025-11-23",
+    "students": [
+      {
+        "id": 101,
+        "status": "Absent"
+      },
+      {
+        "id": 102,
+        "status": "Absent"
+      },
+      {
+        "id": 103,
+        "status": "Absent"
+      },
+      {
+        "id": 104,
+        "status": "Present"
+      },
+      {
+        "id": 105,
+        "status": "Present"
+      },
+      {
+        "id": 106,
+        "status": "Present"
+      },
+      {
+        "id": 107,
+        "status": "Present"
+      },
+      {
+        "id": 108,
+        "status": "Present"
+      },
+      {
+        "id": 109,
+        "status": "Present"
+      },
+      {
+        "id": 110,
+        "status": "Present"
+      }
+    ]
+  }
+]
